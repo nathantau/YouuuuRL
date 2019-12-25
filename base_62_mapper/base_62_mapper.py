@@ -49,7 +49,7 @@ class Mapper():
         return ans
 
     @classmethod
-    def to_base_62(cls, decimal: int) -> str:
+    def to_base_62(cls, decimal: int, possible_characters: list) -> str:
         '''
         Given a 10-digit base 10 number, this function returns its base-62 representation string
 
@@ -60,4 +60,16 @@ class Mapper():
         str: String representation using base 62
         '''
 
-        
+        ans = []
+
+        while decimal >= 1:
+            ans.append(decimal % 62)
+            decimal = int(decimal/62)
+
+        ans.reverse()
+
+        ans = [possible_characters[i] for i in ans]
+
+        ans = ''.join(ans)
+
+        return ans

@@ -27,3 +27,15 @@ class Base62MapperTest(unittest.TestCase):
 
         # Then
         self.assertEqual(decimal, correct_decimal)
+
+    def test_to_base_62(self):
+        # Given
+        possible_characters = base_62_mapper.Mapper.possible_characters
+        dictionary = base_62_mapper.Mapper.generate_dict(possible_characters)
+        num = 100
+
+        # When
+        base62 = base_62_mapper.Mapper.to_base_62(num, possible_characters)
+
+        # Then
+        self.assertEqual(base62, '1C')
