@@ -60,6 +60,8 @@ class Mapper():
         str: String representation using base 62
         '''
 
+        print('our decimal', decimal)
+
         ans = []
 
         while decimal >= 1:

@@ -2,6 +2,7 @@ from flask import Flask, request
 
 import base_62_mapper.base_62_mapper as mapper
 import db
+import string_utils.string_utils as string_utils
 import string
 from flask.json import jsonify
 
@@ -23,7 +24,7 @@ def shorten():
     # if the row already exists in db, then we can finish
     if row_info is None:
         db.insert_row(lengthy_url)
-        row_info = db.get_row(url=lengthy_url)
+        row_info = db.get_row(url=lengthy_url)[0]
     
     # This is the number of the row containing our record
     # It should then be converted into base 62 (6-digit shortened code)
@@ -31,6 +32,7 @@ def shorten():
 
     # Convert into base 62 (this is the 6-digit code)
     shortened_url_code = MAPPER.to_base_62(row_number, possible_characters=POSSIBLE_CHARS)
+    shortened_url_code = string_utils.get_6_digit_representation(shortened_url_code)
 
     shortened_url = BASE + shortened_url_code
 
