@@ -12,7 +12,7 @@ MAPPER = mapper.Mapper
 BASE = 'nathanauimpl.ca/'
 
 @app.route('/v1/shorten', methods=['POST'])
-def home():
+def shorten():
     json = request.json
     lengthy_url = json['url']
 
@@ -35,8 +35,36 @@ def home():
     shortened_url = BASE + shortened_url_code
 
     return jsonify({
-        'Original': lengthy_url,
-        'Shortened': shortened_url
+        'Given': lengthy_url,
+        'Computed': shortened_url
+    })
+    
+@app.route('/v1/lengthen', methods=['POST'])
+def lengthen():
+    json = request.json
+    url = str(json['url'])
+    shortened_url = url
+    if shortened_url.startswith(BASE):
+        shortened_url = shortened_url[len(BASE)::]
+
+    # Get the row number from base62 representation
+    row_number = MAPPER.from_base_62_encoded(shortened_url, DICT)
+
+    # Make the query to see if the row exists in db
+    rows = db.get_row(id=row_number)
+    row_info = None if len(rows) == 0 else rows[0]
+
+    # if the row already exists in db, then we can finish
+    if row_info is None:
+        return jsonify({
+            'Message': 'No lengthy URL exists for this given shortened URL'
+        })
+    
+    lengthy_url = row_info[1]
+
+    return jsonify({
+        'Given': url,
+        'Computed': lengthy_url
     })
     
 if __name__ == '__main__':
