@@ -48,6 +48,10 @@ def lengthen():
     shortened_url = url
     if shortened_url.startswith(BASE):
         shortened_url = shortened_url[len(BASE)::]
+    else:
+        return jsonify({
+            'Message': 'Invalid input.'
+        })
 
     # Get the row number from base62 representation
     row_number = MAPPER.from_base_62_encoded(shortened_url, DICT)
