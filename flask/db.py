@@ -1,14 +1,15 @@
 import psycopg2
+import os
 
 '''
 This is a utility, wrapper class to surround the functionality of basic DB operations (insert/select/delete)
 '''
 
 # Environmental Variables -> move later on to deployment
-HOST = '0.0.0.0'
-DATABASE = 'url'
-USER = 'postgres'
-PASSWORD = 'postgres'
+HOST = os.getenv('DB_HOST')
+DATABASE = os.getenv('DB_DATABASE')
+USER = os.getenv('DB_USER')
+PASSWORD = os.getenv('DB_PASSWORD')
 
 def get_row(**data):
     '''
