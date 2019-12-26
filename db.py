@@ -40,7 +40,7 @@ def insert_row(url: str):
     url (str): The url to insert in the database.
     '''
     # Insert a row with the given url (done only if nothing matches)
-    strategy = lambda cursor : cursor.execute('INSERT into url (id,url) VALUES (1,\'' + url + '\')')
+    strategy = lambda cursor : cursor.execute('INSERT into url (url) VALUES (\'' + url + '\')')
 
     return db_execute_strategy(strategy, method='CREATE')
 
@@ -70,6 +70,8 @@ def db_execute_strategy(strategy, **data):
     # Execute Query Strategy
     # If we get something back from the strategy, we should return it
     result = strategy(cursor)
+    if data['method'] == 'CREATE':
+        connection.commit()
 
     if data['method'] == 'READ':
         return cursor.fetchall()
