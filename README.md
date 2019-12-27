@@ -49,9 +49,7 @@ This project is built using *Docker-Compose* to orchestrate three main component
 * Hiding the application server's IP to provide anonymity from attackers.
 * Load-balancing using techniques such as Round-Robin Balancing, to circulate and spread user requests to other potential servers. This feature is not currently availalbe because I have not configured more than 1 server.
 
-The second is the *Flask* application server. This is where the logic is defined for shortening/lengthening URLs.
-
-The last is a *PostgreSQL* database for storing various URLs.
+The second is the *Flask* application server. This is where the logic is defined for shortening/lengthening URLs. The last is a *PostgreSQL* database for storing various URLs.
 
 **Shortening the URL**: The URL that the user wants to shorten is sent as a request parameter to the endpoint `/v1/shorten`. The server then does a search in the *PostgreSQL* database to determine if there is a pre-existing shortened URL. If it does exist, then this is what is returned back to the user. Otherwise, it is added to the database as a new row,
 the row number is returned, and converted into Base-62 before being transferred back to the user.
@@ -106,7 +104,7 @@ Sample Response
 
 Endpoints:
 
-*`/v1/invalidate`: Removes an endpoint from the database that is no longer needed.
+`/v1/invalidate`: Removes a URL from the database that is no longer needed.
 
 Features:
 
