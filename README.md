@@ -1,6 +1,6 @@
 # YouuuuRL - A URL Shortener
 
-## Python + Flask + PostgreSQL + Docker + NGINX + UWSGI :heart_eyes:
+## Python + Flask + PostgreSQL + Docker + NGINX + uWSGI :heart_eyes:
 
 The goal of this is to be able to map a long sequence of characters (long url) into a short, 6-digit url.
 Furthermore, we should be able to derive the long sequence (original url) from the shortened one.
@@ -31,13 +31,15 @@ Here are some brief details describing the implementation of this project.
 
 * Language: A LOT of Python and some SQL.
 * Framework: Flask, a lightweight server-side framework for Python.
-* Server-side: NGINX and UWSGI to follow proper server-side architecture.
+* Server-side: NGINX and uWSGI to follow proper server-side architecture.
 * Containerization: Docker-compose to orchestrate several Docker containers together.
 * Database: PostgreSQL, a common relational database.
 
+Also, to practice applying Python in the actual industry, I included unit tests using Python's built-in module, `unittest`,for my custom utility classes to confirm their functionality. These can be found under the directory `flask/base_62_mapper/base_62_mapper_test.py` and `flask/string_utils/string_utils.py`
+
 ### System Design/Architecture
 
-[INSERT IMAGE HERE]
+![System Design Architecture](assets/Architecture.png)
 
 ### Data Flow
 
