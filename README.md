@@ -27,20 +27,28 @@ Here are some brief details describing the implementation of this project.
 
 ### Tech Stack
 
-
+* Language: A LOT of Python and some SQL.
+* Framework: Flask, a lightweight server-side framework for Python.
+* Server-side: NGINX and UWSGI to follow proper server-side architecture.
+* Containerization: Docker-compose to orchestrate several Docker containers together.
+* Database: PostgreSQL, a common relational database.
 
 ### System Design/Architecture
 
-Design choices...
-
+[INSERT IMAGE HERE]
 
 ### Data Flow
 
 
 
+
 ## Endpoints
 
+### Shorten URL
 
+`/v1/shorten`
 
+### Lengthen URL
 
+`/v1/lengthen`
 
