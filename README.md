@@ -99,3 +99,13 @@ Sample Response
     "computed": "facebook.com/abcdafewewafefewafewafewafewafewafewafewafewafe"
 }
 ```
+
+### Possible new features
+
+Endpoints:
+
+*`/v1/invalidate`: Removes an endpoint from the database that is no longer needed.
+
+Features:
+
+* Load Balancing with NGINX
