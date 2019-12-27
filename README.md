@@ -39,7 +39,7 @@ Also, to practice applying Python in the actual industry, I included unit tests 
 
 ### System Design/Architecture
 
-![System Design Architecture](assets/Architecture.png)
+![System Design Architecture](assets/SYDE.png)
 
 ### Data Flow
 
